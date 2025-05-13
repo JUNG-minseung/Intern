@@ -1,11 +1,11 @@
-const express = require('express');
-const authRoutes = require('./routes/auth.routes');
-const swaggerSetup = require('./swagger');
+//포트 3000에서 서버 실행 (0.0.0.0:3000)
 
-const app = express();
+require('dotenv').config();
 
-app.use(express.json()); // JSON 요청 파싱
-app.use('/api', authRoutes); // 인증 라우트 등록
-swaggerSetup(app); // Swagger 문서화 설정
+const app = require('./app');
 
-module.exports = app;
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running at http://0.0.0.0:${PORT}`);
+});
